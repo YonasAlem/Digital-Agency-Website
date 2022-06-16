@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="./css/login_and_signup_style.css">
+    <script>
+        function authenticate() {
+            let username = document.form.username.value;
+            let email = document.form.email.value;
+            let password = document.form.password.value;
+            let auth = new Authenticate(username, email, password);
+            let temp = auth.validateUsername();
+            let temp2 = auth.validateEmail();
+            let temp3 = auth.validatePassword();
+            if (!temp) {
+                return false;
+            }
+            if (!temp2) {
+                return false;
+            }
+            if (!temp3) {
+                return false;
+            }
+        }
+        class Authenticate {
+            constructor(username, email, password) {
+                this.username = username;
+                this.email = email;
+                this.password = password;
+            };
+            validateUsername() {
+                if (this.username == '') {
+                    alert('please enter username');
+                    return false;
+                }
+            }
+            validateEmail() {
+                if (this.email == '') {
+                    alert('please enter email address');
+                    return false;
+                }
+            }
+            validatePassword() {
+                if (this.password == '') {
+                    alert('please enter password');
+                    return false;
+                }
+                else if (this.password.length < 6) {
+                    alert('password length must be greater than 6');
+                    return false;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form action="./index.html" name="form" class="login" onsubmit="return authenticate()">
+        <label class="title">Signup Page</label>
+        <div class="field">
+            <input type="text" name="username" placeholder="username">
+        </div>
+        <div class="field">
+            <input type="email" name="email" placeholder="email address">
+        </div>
+        <div class="field">
+            <input type="password" name="password" placeholder="passsword">
+        </div>
+        <div class="field">
+            <input type="submit" class="btn" value="Signup">
+        </div>
+        <label><a href="login_form.html">Have an account?</a></label>
+    </form>
+</body>
+
+</html>
